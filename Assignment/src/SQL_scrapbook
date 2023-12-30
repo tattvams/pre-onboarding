@@ -1,0 +1,59 @@
+-- Create table
+CREATE TABLE sample_index (
+    Ticker varchar(50),
+    Date varchar(50),
+    Open float,
+    High float,
+    Low float,
+    Close float,
+    Volume BIGINT,
+    Open_Interest BIGINT
+);
+
+
+INSERT INTO sample_index (Ticker, Date, Open, High, Low, Close, Volume, Open_Interest)
+VALUES
+('AAPL', '2023-01-01', 150.00, 155.00, 148.50, 153.00, 1000000, 500000),
+('GOOGL', '2023-01-01', 2800.00, 2850.00, 2785.50, 2830.00, 500000, 200000),
+('MSFT', '2023-01-01', 320.00, 325.50, 318.75, 322.50, 750000, 300000),
+('AMZN', '2023-01-01', 3400.00, 3450.00, 3385.75, 3425.00, 300000, 150000);
+
+-- Select all
+SELECT * FROM sample_index;
+
+-- Select distinct Tickers
+SELECT DISTINCT Ticker FROM sample_index;
+
+-- Select where 
+SELECT * FROM sample_index WHERE Close > 320;
+
+-- Select where Ticker is 'AAPL' or 'GOOGL'
+SELECT * FROM sample_index WHERE Ticker = 'AAPL' OR Ticker = 'GOOGL';
+
+-- Order by High 
+SELECT * FROM sample_index ORDER BY High DESC;
+
+-- Insert new record
+INSERT INTO sample_index (Ticker, Date, Open, High, Low, Close, Volume, Open_Interest)
+VALUES ('NFLX', '2023-01-01', 600.00, 610.50, 595.75, 605.00, 400000, 180000);
+
+-- Update Close 
+UPDATE sample_index SET Close = 155.50 WHERE Ticker = 'AAPL' AND Date = '2023-01-01';
+
+-- Delete 
+DELETE FROM sample_index WHERE Volume < 500000;
+
+-- Select top 2 records
+SELECT * FROM sample_index LIMIT 2;
+
+-- Select where Ticker starts with 'A'
+SELECT * FROM sample_index WHERE Ticker LIKE 'A%';
+
+-- Select where Ticker is in a list
+SELECT * FROM sample_index WHERE Ticker IN ('AAPL', 'GOOGL');
+
+-- Select where Volume is between 500000 and 750000
+SELECT * FROM sample_index WHERE Volume BETWEEN 500000 AND 750000;
+
+-- Alias 
+SELECT Ticker AS StockSymbol, Open AS OpeningPrice, Close AS ClosingPrice FROM sample_index;

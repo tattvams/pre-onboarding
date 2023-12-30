@@ -1,0 +1,102 @@
+// File: JavaOops.java
+
+// Package declaration
+
+
+// Abstraction: Vehicle (abstract class)
+abstract class Vehicle {
+    private String brand;
+
+    // Encapsulation: Getter and Setter for brand
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    // Abstract method for displaying information
+    abstract void displayInfo();
+}
+
+// Inheritance: Car (inherits from Vehicle)
+class Car extends Vehicle {
+    private int numberOfDoors;
+
+    // Encapsulation: Getter and Setter for numberOfDoors
+    public int getNumberOfDoors() {
+        return numberOfDoors;
+    }
+
+    public void setNumberOfDoors(int numberOfDoors) {
+        this.numberOfDoors = numberOfDoors;
+    }
+
+    // Polymorphism and Overriding: Override displayInfo method
+    @Override
+    void displayInfo() {
+        System.out.println("Car - Brand: " + getBrand() + ", Number of Doors: " + numberOfDoors);
+    }
+}
+
+// Inheritance: Motorcycle (inherits from Vehicle)
+class Motorcycle extends Vehicle {
+    private boolean hasSideCar;
+
+    // Encapsulation: Getter and Setter for hasSideCar
+    public boolean hasSideCar() {
+        return hasSideCar;
+    }
+
+    public void setHasSideCar(boolean hasSideCar) {
+        this.hasSideCar = hasSideCar;
+    }
+
+    // Polymorphism and Overriding: Override displayInfo method
+    @Override
+    void displayInfo() {
+        System.out.println("Motorcycle - Brand: " + getBrand() + ", Has Side Car: " + hasSideCar);
+    }
+}
+
+// Interface: ElectricVehicle (interface)
+interface ElectricVehicle {
+    void charge();
+}
+
+// Class implementing interface: ElectricCar (implements ElectricVehicle)
+class ElectricCar extends Car implements ElectricVehicle {
+    // Polymorphism and Overriding: Override displayInfo method
+    @Override
+    void displayInfo() {
+        System.out.println("Electric Car - Brand: " + getBrand() + ", Number of Doors: " + getNumberOfDoors());
+    }
+
+    // Interface method implementation
+    @Override
+    public void charge() {
+        System.out.println("Charging Electric Car...");
+    }
+}
+
+// Main class to showcase the usage
+public class JavaOops {
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.setBrand("Toyota");
+        myCar.setNumberOfDoors(4);
+        myCar.displayInfo();
+
+        Motorcycle myMotorcycle = new Motorcycle();
+        myMotorcycle.setBrand("Harley Davidson");
+        myMotorcycle.setHasSideCar(false);
+        myMotorcycle.displayInfo();
+
+        ElectricCar myElectricCar = new ElectricCar();
+        myElectricCar.setBrand("Tesla");
+        myElectricCar.setNumberOfDoors(2);
+        myElectricCar.displayInfo();
+        myElectricCar.charge();
+    }
+}

@@ -1,0 +1,43 @@
+import java.io.*;
+
+public class FileReadWrite {
+	//1.12
+    public static void main(String[] args) {
+        
+        String filePath = "example.txt";
+
+        try {
+           
+            File file = new File(filePath);
+
+            
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+
+            
+            FileWriter writer = new FileWriter(filePath);
+            writer.write("Hello, this is some content in the file.");
+            writer.close();
+            System.out.println("Data written to the file.");
+
+            
+            FileReader reader = new FileReader(filePath);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+
+            String line;
+            System.out.println("Reading from the file:");
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+           
+            bufferedReader.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+}

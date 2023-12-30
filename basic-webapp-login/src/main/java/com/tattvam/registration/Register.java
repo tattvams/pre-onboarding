@@ -1,0 +1,77 @@
+package com.tattvam.registration;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/regi")
+public class Register extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/webapp?useSSL=false";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "pass123";
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        RequestDispatcher dispatcher = null;
+
+        out.println("<h2>Form Parameters:</h2>");
+        out.println("<p>First Name: " + firstName + "</p>");
+        out.println("<p>Last Name: " + lastName + "</p>");
+        out.println("<p>Username: " + username + "</p>");
+        out.println("<p>Password: " + password + "</p>");
+        out.println("<p>Email: " + email + "</p>");
+        Connection con = null;
+        try {
+           
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            
+            con = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+            PreparedStatement pst = con.prepareStatement("INSERT INTO users (username, email, password, first_name, last_name) VALUES (?, ?, ?, ?, ?)") ;
+            pst.setString(1, username);
+            pst.setString(2, email);
+            pst.setString(3, password);
+            pst.setString(4, firstName);
+            pst.setString(5, lastName);
+            
+            int rowCount= pst.executeUpdate();
+            dispatcher= request.getRequestDispatcher("index.jsp");
+            
+            if (rowCount>0) {
+            	request.setAttribute("status", "success");
+            }else {
+            	request.setAttribute("status", "failed");
+            }
+            
+            	dispatcher.forward(request, response);
+           
+        } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+    }
+}

@@ -1,0 +1,14 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class JavaDBC {
+	public static void main(String[] args) {
+	    final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/webapp?useSSL=false";
+	    final String USERNAME = "root";
+	    final String PASSWORD = "pass123";
+	    
+		Connection con = null;
+		PreparedStatement pst = null;
+	}
+
+}

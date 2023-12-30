@@ -1,0 +1,94 @@
+import java.util.*;
+//1.7 Collections
+public class JavaCollections {
+	static class Person {
+	    private String name;
+	    private int age;
+
+	    public Person(String name, int age) {
+	        this.name = name;
+	        this.age = age;
+	    }
+
+	    public String getName() {
+	        return name;
+	    }
+
+	    public int getAge() {
+	        return age;
+	    }
+	}
+	
+    public static void main(String[] args) {
+        // List Example
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Apple");
+        stringList.add("Banana");
+        stringList.add("Orange");
+
+        System.out.println("List Example:");
+        for (String fruit : stringList) {
+            System.out.println(fruit);
+        }
+        System.out.println();
+
+        // Set Example
+        Set<Integer> integerSet = new HashSet<>();
+        integerSet.add(10);
+        integerSet.add(20);
+        integerSet.add(30);
+        integerSet.add(20); 
+
+        System.out.println("Set Example:");
+        for (int number : integerSet) {
+            System.out.println(number);
+        }
+        System.out.println();
+
+        // Map Example
+        Map<String, Integer> stringIntegerMap = new HashMap<>();
+        stringIntegerMap.put("One", 1);
+        stringIntegerMap.put("Two", 2);
+        stringIntegerMap.put("Three", 3);
+
+        System.out.println("Map Example:");
+        for (Map.Entry<String, Integer> entry : stringIntegerMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+        
+        List<Person> personList = new ArrayList<>();
+        personList.add(new Person("Alice", 25));
+        personList.add(new Person("Bob", 30));
+        personList.add(new Person("Charlie", 22));
+
+        System.out.println("List Example:");
+        for (Person person : personList) {
+            System.out.println(person); 
+        }
+        System.out.println();
+
+        // Set Example with custom objects
+        Set<Person> personSet = new HashSet<>();
+        personSet.add(new Person("Alice", 25));
+        personSet.add(new Person("Bob", 30));
+        personSet.add(new Person("Charlie", 22));
+        personSet.add(new Person("Bob", 30)); // Duplicate objects are not allowed in a Set
+
+        System.out.println("Set Example:");
+        for (Person person : personSet) {
+            System.out.println(person); 
+        }
+        System.out.println();
+
+        // Map Example with custom objects
+        Map<String, Person> personMap = new HashMap<>();
+        personMap.put("Alice", new Person("Alice", 25));
+        personMap.put("Bob", new Person("Bob", 30));
+        personMap.put("Charlie", new Person("Charlie", 22));
+
+        System.out.println("Map Example:");
+        for (Map.Entry<String, Person> entry : personMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue()); // Default toString will be used
+        }
+    }
+}

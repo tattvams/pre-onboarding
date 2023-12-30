@@ -1,0 +1,41 @@
+import java.util.*;
+
+public class JavaCollections {
+    public static void main(String[] args) {
+        // List Example
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Apple");
+        stringList.add("Banana");
+        stringList.add("Orange");
+
+        System.out.println("List Example:");
+        for (String fruit : stringList) {
+            System.out.println(fruit);
+        }
+        System.out.println();
+
+        // Set Example
+        Set<Integer> integerSet = new HashSet<>();
+        integerSet.add(10);
+        integerSet.add(20);
+        integerSet.add(30);
+        integerSet.add(20); // Duplicate elements are not allowed in a Set
+
+        System.out.println("Set Example:");
+        for (int number : integerSet) {
+            System.out.println(number);
+        }
+        System.out.println();
+
+        // Map Example
+        Map<String, Integer> stringIntegerMap = new HashMap<>();
+        stringIntegerMap.put("One", 1);
+        stringIntegerMap.put("Two", 2);
+        stringIntegerMap.put("Three", 3);
+
+        System.out.println("Map Example:");
+        for (Map.Entry<String, Integer> entry : stringIntegerMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+}

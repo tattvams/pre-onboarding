@@ -1,0 +1,12 @@
+CREATE TABLE sample_index(
+Ticker varchar(50),
+Date varchar(50),
+Open float,
+High float,
+Low float,
+Close float,
+Volume BIGINT,
+Open_Interest bigint
+);
+
+select * from ISS_DB.sample_index;

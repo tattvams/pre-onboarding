@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="sample.css">
+    <title>Sample Sign-up Page</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <label>Username:</label>
+            <input type="text" id="username" class="inputField" placeholder="Enter your username">
+
+            <label >Email:</label>
+            <input type="email" id="email" class="inputField" placeholder="Enter your email">
+
+            <label >Password:</label>
+            <input type="password" id="password" class="inputField" placeholder="Enter your password">
+
+            <button type="button" onclick="validateForm()">Sign Up</button>
+        </form>
+
+        <p id="error-message" class="error-message"></p>
+    </div>
+
+    <script src="sample.js"></script>
+</body>
+</html>
